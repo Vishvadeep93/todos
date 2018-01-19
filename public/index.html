@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/app.css">
+	 <title>To Do List</title>
+	 <style>
+	 </style>
+</head>
+
+<body ng-app="todosApp" ng-controller="appCtrl">
+
+		<div class="container mainWrapper">
+           <div class=row>
+          	<div class=col-sm-12>
+          		<center>
+          			<h2 >All Tasks</h2>
+          			<br>
+          		
+	          		<button type="button" class="btn btn-primary" style="border-radius: 50%; font-size:30px; text-align: center" data-toggle="modal" data-target="#addTask">+</button>
+
+	          						<!--Add task Modal-->
+									<div id="addTask" class="modal fade" role="dialog">
+										<div class="modal-dialog">
+
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">Add New Task</h4>
+													    <button type="button" class="close" data-dismiss="modal">&times;</button>
+												</div>
+												<div class="modal-body">
+													<div class="add-form" >
+					          							<form method="post"  id="task_form" >
+								                            <div class="form-group">
+										                         <input type="text" class="form-control" ng-model="new_task" name="newTask" id='newTask' placeholder="What?">
+								                            </div>
+								                            <button type="submit" class="btn btn-default" data-dismiss="modal" ng-click="addTask()">Add</button>
+								                         </form>
+					                 				</div>
+												</div>
+											</div>		      
+										</div>
+									</div>
+					</center>
+					<ul>
+						<li ng-if="taskrecords.length==0 ">
+							No Tasks Added
+						</li>
+						<li ng-repeat="todo in taskrecords" class="list-{{todo.status}}" ng-if="taskrecords.length!=0 ">
+							<label class="checkBox_container">
+								<input type="checkbox" ng-model="todo.status" ng-change="update_status(todo._id,todo.status)">
+									  
+									  <span class="checkmark" style="display:inline"></span>
+							
+					<span class="completed-{{todo.status}}" style="display:inline">{{todo.task}}</span> <button ng-click="deleteTask(todo._id)"  type="button" style="float: right; border-radius:50%;">X</button></li>
+				</label>
+					</ul>
+          		
+          		
+          	</div>
+          </div>
+         </div>
+</body>
+
+<!--begin libs-->
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/jquery-1.12.4.js"></script>
+<script src="assets/js/tether.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<!--end libs-->
+
+<!--begin controllers-->
+<script src="js/appCtrl.js"></script>
+
+
+	
+
+
+
+
+</script>
+
+</html>
